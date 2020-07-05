@@ -6,10 +6,10 @@ import retrofit2.http.Path
 
 interface ApiServices {
 
-    @GET("ios-assignment/search?query=apple&page=1")
+    @GET("search?query=apple&page=1")
     suspend fun getProducts(): ProductsResponse
 
-    @GET("ios-assignment/product/{id}")
+    @GET("product/{id}")
     suspend fun getProductDetails(@Path("id") id: Int)
 
 

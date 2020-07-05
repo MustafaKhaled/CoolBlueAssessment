@@ -20,7 +20,7 @@ android {
 
     buildTypes {
         debug{
-            buildConfigField "String", "BASE_URL", '"https://bdk0sta2n0.execute-api.eu-west-1.amazonaws.com/"'
+            buildConfigField "String", "BASE_URL", '"https://bdk0sta2n0.execute-api.eu-west-1.amazonaws.com/ios-assignment/"'
         }
 
         release {

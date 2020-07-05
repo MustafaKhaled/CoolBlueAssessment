@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class AllProductsViewModel @Inject constructor(private val iProductUseCase: IProductUseCase): BaseViewModel<StateUi>() {
     private val exceptionHandler = CoroutineExceptionHandler { _, exception ->
-        uiState.value = StateUi.Error(exception)
+        uiState.postValue(StateUi.Error(exception))
     }
 
     fun getAllProducts(){
