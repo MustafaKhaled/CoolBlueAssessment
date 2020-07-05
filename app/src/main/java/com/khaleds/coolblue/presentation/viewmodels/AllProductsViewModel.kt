@@ -20,7 +20,7 @@ class AllProductsViewModel @Inject constructor(private val iProductUseCase: IPro
         uiState.value = StateUi.Loading
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
             val result = iProductUseCase.getAllProducts()
-            uiState.value = StateUi.Success(result)
+            uiState.postValue(StateUi.Success(result))
         }
     }
 

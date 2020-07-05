@@ -12,5 +12,5 @@ data class Product(
     val productName: String?,
     val promoIcon: PromoIcon?,
     val reviewInformation: ReviewInformation?,
-    val salesPriceIncVat: Int?
+    val salesPriceIncVat: Double?
 )
