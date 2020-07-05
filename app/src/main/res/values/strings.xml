@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CoolBlue</string>
+    <string name="delivered_tomorrow_text">Delivered tomorrow</string>
 </resources>

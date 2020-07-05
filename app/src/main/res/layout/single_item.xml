@@ -32,11 +32,12 @@
         app:layout_constraintTop_toBottomOf="@+id/imageLinear"
         >
         <TextView
+            android:id="@+id/productName"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             tools:text="iPhone 5"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorAccent"
             />
 
     </LinearLayout>
@@ -58,6 +59,7 @@
             android:layout_height="match_parent"
             >
             <RatingBar
+                android:id="@+id/productRating"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:isIndicator="true"
@@ -68,12 +70,14 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/totalReviews"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
             android:gravity="center"
             android:textColor="#000000"
+            android:textStyle="bold"
             tools:text="209" />
 
 
@@ -97,6 +101,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:textColor="#000000"
+            android:textStyle="bold"
             tools:text="34€" />
 
         <LinearLayout
@@ -107,18 +112,19 @@
             android:layout_weight="1"
             android:gravity="center"
             >
-
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_check_circle_black_24dp"
+                />
             <TextView
                 android:id="@+id/sameDayTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                tools:text="Same Day Delivery" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_whatshot_black_24dp"
-                />
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                android:text="@string/delivered_tomorrow_text" />
+
 
         </LinearLayout>
     </LinearLayout>
