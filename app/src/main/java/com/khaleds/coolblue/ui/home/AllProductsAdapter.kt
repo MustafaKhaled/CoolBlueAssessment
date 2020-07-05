@@ -23,7 +23,7 @@ class AllProductsAdapter(private val clickListener: (Product) -> Unit): Recycler
         holder.bind(mainList[holder.adapterPosition],clickListener)
     }
 
-    fun addAll(allProducts: ArrayList<Product>?){
+    fun addAll(allProducts: List<Product>?){
         allProducts?.let { mainList.addAll(it) }
         allProducts?.size?.let { notifyItemRangeInserted(mainList.size, it) }
     }

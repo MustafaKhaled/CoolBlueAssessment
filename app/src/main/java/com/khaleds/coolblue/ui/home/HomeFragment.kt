@@ -7,9 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.khaleds.coolblue.MainActivity
 import com.khaleds.coolblue.R
 import com.khaleds.coolblue.data.di.components.DaggerDataComponent
+import com.khaleds.coolblue.data.remote.entities.Product
+import com.khaleds.coolblue.data.remote.entities.ProductsResponse
 import com.khaleds.coolblue.presentation.di.component.DaggerPresentationComponent
 import com.khaleds.coolblue.presentation.factory.ViewModelFactory
 import com.khaleds.coolblue.presentation.viewmodels.AllProductsViewModel
@@ -22,6 +27,8 @@ import javax.inject.Inject
 class HomeFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+    lateinit var adapter: AllProductsAdapter
+    lateinit var layoutManager: LinearLayoutManager
     lateinit var allProductsViewModel: AllProductsViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +59,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
         allProductsViewModel.observeState().observe(viewLifecycleOwner, Observer {
             when (it) {
                 is StateUi.Loading -> {
@@ -60,7 +68,8 @@ class HomeFragment : Fragment() {
 
                 is StateUi.Success -> {
                     progressBar.visibility = View.GONE
-
+                    val result = it.data as ProductsResponse
+                    adapter.addAll(result.products)
                 }
 
                 is StateUi.Error -> {
@@ -99,5 +108,16 @@ class HomeFragment : Fragment() {
         searchView.setOnClickListener { view -> }
     }
 
+    private fun setupRecyclerView() {
+        adapter = AllProductsAdapter { product: Product -> movieItemClicked(product) }
+        layoutManager = GridLayoutManager(context,2, LinearLayoutManager.VERTICAL, false)
+        productList.layoutManager = layoutManager
+        productList.adapter = adapter
+    }
+
+    private fun movieItemClicked(product: Product) {
+        val action = HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment()
+//        Navigation.findNavController(product).navigate(action)
+    }
 
 }
