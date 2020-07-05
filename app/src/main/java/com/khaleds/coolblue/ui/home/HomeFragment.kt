@@ -7,12 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.khaleds.coolblue.MainActivity
 import com.khaleds.coolblue.R
+import com.khaleds.coolblue.presentation.viewmodels.AllProductsViewModel
 
 class HomeFragment: Fragment() {
+    lateinit var allProductsViewModel: AllProductsViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-//        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
     }
 
     override fun onCreateView(
