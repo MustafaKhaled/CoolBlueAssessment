@@ -1,6 +1,5 @@
+package com.khaleds.coolblue.di.component
 import com.khaleds.coolblue.data.remote.endpoints.ApiServices
-
-
 import android.content.Context
 import com.khaleds.coolblue.di.module.ContextModule
 import com.khaleds.coolblue.di.module.RetrofitModule
