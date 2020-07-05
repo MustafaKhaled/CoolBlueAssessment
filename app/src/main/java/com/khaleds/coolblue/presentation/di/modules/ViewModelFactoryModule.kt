@@ -16,7 +16,7 @@ interface ViewModelFactoryModule {
     @IntoMap
     @ViewModelKey(AllProductsViewModel::class)
     @PresentationScope
-    fun bindAllMoviesViewModel(moviesSharedViewModel: AllProductsViewModel): ViewModel
+    fun bindAllProductsViewModel(allProductsViewModel: AllProductsViewModel): ViewModel
 
 
 
