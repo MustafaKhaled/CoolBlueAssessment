@@ -64,10 +64,13 @@ class ProductDetailsFragment: Fragment() {
             when (it) {
                 is StateUi.Loading -> {
                     progressBar.visibility = View.VISIBLE
+                    content.visibility = View.GONE
                 }
 
                 is StateUi.Success -> {
                     progressBar.visibility = View.GONE
+                    content.visibility = View.VISIBLE
+
                     val result = it.data as ProductDetailsResponse
                     setupSlider(result.product.productImages)
                     setUpViews(result.product)
@@ -75,6 +78,7 @@ class ProductDetailsFragment: Fragment() {
 
                 is StateUi.Error -> {
                     progressBar.visibility = View.GONE
+                    content.visibility = View.GONE
                     view.snack(getString(R.string.general_error_msg))
                 }
 
