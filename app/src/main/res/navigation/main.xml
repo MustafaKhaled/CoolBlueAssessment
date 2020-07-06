@@ -24,5 +24,9 @@
         android:name="com.khaleds.coolblue.ui.details.ProductDetailsFragment"
         android:label="ProductDetailsFragment"
         tools:layout="@layout/fragment_product_details"
-        />
+        >
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
