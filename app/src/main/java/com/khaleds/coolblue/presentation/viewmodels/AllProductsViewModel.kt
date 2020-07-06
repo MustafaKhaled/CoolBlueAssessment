@@ -1,10 +1,8 @@
 package com.khaleds.coolblue.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.khaleds.coolblue.data.remote.entities.ProductsResponse
-import com.khaleds.coolblue.domain.usecases.IProductUseCase
+import com.khaleds.coolblue.domain.usecases.allproducts.IProductUseCase
 import com.khaleds.coolblue.util.StateUi
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers

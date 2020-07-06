@@ -23,7 +23,7 @@ interface ViewModelFactoryModule {
     @IntoMap
     @ViewModelKey(ProductDetailsViewModel::class)
     @PresentationScope
-    fun bindAllProductsViewModel(productDetailsViewModel: ProductDetailsViewModel): ViewModel
+    fun bindAllProductDetailsViewModel(productDetailsViewModel: ProductDetailsViewModel): ViewModel
 
 
 

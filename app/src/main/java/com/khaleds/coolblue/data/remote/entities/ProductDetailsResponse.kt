@@ -4,7 +4,6 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ReviewInformation(
-    val reviewSummary: ReviewSummary?,
-    val reviews: List<Review>?
+data class ProductDetailsResponse(
+    val product: Product?
 ) : Parcelable
