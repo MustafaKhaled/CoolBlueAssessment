@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.khaleds.coolblue.R
+import com.khaleds.coolblue.data.remote.entities.Product
 
 class ProductDetailsFragment: Fragment() {
-
+    lateinit var product: Product
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        bindArguments(arguments)
     }
 
 
@@ -29,7 +31,7 @@ class ProductDetailsFragment: Fragment() {
 
     private fun bindArguments(arguments: Bundle?) {
         if(arguments!=null){
-//            movie = MovieDetailsFragmentArgs.fromBundle(arguments).movie
+            product = ProductDetailsFragmentArgs.fromBundle(arguments).product
         }
     }
 }

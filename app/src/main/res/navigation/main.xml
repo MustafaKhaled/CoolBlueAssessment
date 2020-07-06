@@ -26,7 +26,7 @@
         tools:layout="@layout/fragment_product_details"
         >
         <argument
-            android:name="productId"
+            android:name="product"
             app:argType="com.khaleds.coolblue.data.remote.entities.Product" />
     </fragment>
 </navigation>
