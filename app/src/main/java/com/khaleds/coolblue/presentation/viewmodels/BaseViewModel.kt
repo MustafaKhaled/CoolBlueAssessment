@@ -6,5 +6,5 @@ import androidx.lifecycle.ViewModel
 
 abstract class BaseViewModel<T> : ViewModel() {
     abstract fun uiState(): LiveData<T>
-    protected val uiState: MutableLiveData<T> = MutableLiveData()
+    public val uiState: MutableLiveData<T> = MutableLiveData()
 }
