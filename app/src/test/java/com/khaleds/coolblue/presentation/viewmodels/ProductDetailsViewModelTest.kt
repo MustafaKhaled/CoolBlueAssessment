@@ -19,6 +19,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.MockitoAnnotations
+
 @ExperimentalCoroutinesApi
 class ProductDetailsViewModelTest {
     @get:Rule
@@ -30,15 +32,18 @@ class ProductDetailsViewModelTest {
     lateinit var viewState: Observer<StateUi>
     @Mock
     lateinit var product: Product
+    @Mock
     lateinit var viewModel: ProductDetailsViewModel
     @Before
     fun setUp() {
+        MockitoAnnotations.initMocks(this)
+
         viewModel = ProductDetailsViewModel(allProductsUseCase)
         viewModel.uiState().observeForever(viewState)
     }
 
     @Test
-    fun `execute getAllProducts and success state result`(){
+    fun `execute getDetails and success state result`(){
         runBlockingTest {
             val result = ProductDetailsResponse(product)
             Mockito.`when`(allProductsUseCase.getDetails(1)).thenReturn(result)

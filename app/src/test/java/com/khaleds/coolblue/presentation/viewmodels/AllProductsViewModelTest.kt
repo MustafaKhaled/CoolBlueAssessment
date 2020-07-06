@@ -27,12 +27,21 @@ class AllProductsViewModelTest{
     @Mock
     lateinit var viewState: Observer<StateUi>
     lateinit var viewModel: AllProductsViewModel
-
+    private val receivedUiStates: MutableList<StateUi> =
+        arrayListOf()
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         viewModel = AllProductsViewModel(allProductsUseCase)
         viewModel.uiState().observeForever(viewState)
+    }
+
+    private fun observeViewModel(viewModel: AllProductsViewModel) {
+        viewModel.uiState.observeForever { uiState ->
+            if (uiState != null) {
+                receivedUiStates.add(uiState)
+            }
+        }
     }
 
     @Test

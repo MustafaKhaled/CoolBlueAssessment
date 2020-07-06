@@ -24,7 +24,4 @@ class MyApplication : Application() {
                 ).retrofitModule(RetrofitModule()).build()
     }
 
-    public fun getContext(): Context {
-        return appContext
-    }
 }
