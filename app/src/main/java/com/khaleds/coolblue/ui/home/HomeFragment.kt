@@ -64,8 +64,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        allProductsViewModel.observeState()
-        allProductsViewModel.observeState().observe(viewLifecycleOwner, Observer {
+
+        allProductsViewModel.uiState().observe(viewLifecycleOwner, Observer {
             when (it) {
                 is StateUi.Loading -> {
                     progressBar.visibility = View.VISIBLE

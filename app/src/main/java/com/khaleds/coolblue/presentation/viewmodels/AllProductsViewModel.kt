@@ -22,7 +22,8 @@ class AllProductsViewModel @Inject constructor(private val iProductUseCase: IPro
         }
     }
 
-    fun observeState(): LiveData<StateUi>{
-        return uiState()
+
+    override fun uiState(): LiveData<StateUi> {
+        return uiState
     }
 }
