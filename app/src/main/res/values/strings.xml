@@ -2,4 +2,7 @@
     <string name="app_name">CoolBlue</string>
     <string name="delivered_tomorrow_text">Delivered tomorrow</string>
     <string name="reviewers_label">reviewers</string>
+    <string name="description_label">Description</string>
+    <string name="consTitle">Cons</string>
+    <string name="prosTitle">Pros</string>
 </resources>

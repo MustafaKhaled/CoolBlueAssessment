@@ -21,7 +21,7 @@ data class Product(
     @SerializedName("productImage")
     val productImage: String?,
     @SerializedName("productImages")
-    val productImages: List<String>?,
+    val productImages: List<String>,
     @SerializedName("productName")
     val productName: String?,
     @SerializedName("productText")

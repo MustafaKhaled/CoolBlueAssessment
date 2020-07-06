@@ -5,5 +5,5 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ProductDetailsResponse(
-    val product: Product?
+    val product: Product
 ) : Parcelable

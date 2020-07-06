@@ -7,21 +7,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.khaleds.coolblue.R
 import com.khaleds.coolblue.data.di.components.DaggerDataComponent
 import com.khaleds.coolblue.data.remote.entities.Product
+import com.khaleds.coolblue.data.remote.entities.ProductDetailsResponse
+import com.khaleds.coolblue.data.remote.entities.ProductsResponse
 import com.khaleds.coolblue.presentation.di.component.DaggerPresentationComponent
 import com.khaleds.coolblue.presentation.factory.ViewModelFactory
 import com.khaleds.coolblue.presentation.viewmodels.ProductDetailsViewModel
 import com.khaleds.coolblue.ui.details.di.component.DaggerProductDetailsComponent
 import com.khaleds.coolblue.util.MyApplication
+import com.khaleds.coolblue.util.StateUi
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_product_details.*
+import kotlinx.android.synthetic.main.fragment_product_details.progressBar
 import javax.inject.Inject
 
 
@@ -59,11 +63,27 @@ class ProductDetailsFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val imageList = ArrayList<SlideModel>()
-        imageList.add(SlideModel("https://bit.ly/2YoJ77H", ScaleTypes.FIT))
-        imageList.add(SlideModel("https://bit.ly/2BteuF2", ScaleTypes.FIT))
-        imageList.add(SlideModel("https://bit.ly/3fLJf72", ScaleTypes.FIT))
-        image_slider.setImageList(imageList)
+        productDetailsViewModel.uiState().observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is StateUi.Loading -> {
+                    progressBar.visibility = View.VISIBLE
+                }
+
+                is StateUi.Success -> {
+                    progressBar.visibility = View.GONE
+                    val result = it.data as ProductDetailsResponse
+                    setupSlider(result.product?.productImages)
+
+                }
+
+                is StateUi.Error -> {
+                    progressBar.visibility = View.GONE
+
+                }
+
+            }
+
+        })
     }
 
     private fun bindArguments(arguments: Bundle?) {
@@ -71,4 +91,13 @@ class ProductDetailsFragment: Fragment() {
             product = ProductDetailsFragmentArgs.fromBundle(arguments).product
         }
     }
+
+    private fun setupSlider(urls: List<String>){
+        val imageList = ArrayList<SlideModel>()
+        for(url in urls){
+            imageList.add(SlideModel(url, ScaleTypes.FIT))
+        }
+        imageSlider.setImageList(imageList)
+    }
+
 }
