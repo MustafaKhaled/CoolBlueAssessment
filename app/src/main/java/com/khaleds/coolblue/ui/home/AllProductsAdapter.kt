@@ -1,11 +1,13 @@
 package com.khaleds.coolblue.ui.home
 
+import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.khaleds.coolblue.R
 import com.khaleds.coolblue.data.remote.entities.Product
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.single_item.view.*
 
 class AllProductsAdapter(private val clickListener: (Product) -> Unit): RecyclerView.Adapter<AllProductsAdapter.ProductViewHolder>() {
@@ -30,13 +32,19 @@ class AllProductsAdapter(private val clickListener: (Product) -> Unit): Recycler
 
     class ProductViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
         fun bind(singleProduct: Product, clickListener: (Product) -> Unit) = with(itemView){
-            productName.text = singleProduct.productName
-            price.text = singleProduct.salesPriceIncVat.toString()
-            totalReviews.text = singleProduct.reviewInformation?.reviewSummary?.reviewCount.toString()
-            productRating.rating = singleProduct.reviewInformation?.reviewSummary?.reviewAverage!!.toFloat()
-            itemView.setOnClickListener {
-                clickListener(singleProduct)
+            singleProduct.let {
+                Picasso.get().load(it.productImage).into(productImage)
+                productName.text = it.productName
+                price.text = it.salesPriceIncVat.toString().plus("€")
+                totalReviews.text = it.reviewInformation?.reviewSummary?.reviewCount.toString().plus(" ").plus(context.getString(
+                                    R.string.reviewers_label))
+                productRating.rating = ((it.reviewInformation?.reviewSummary?.reviewAverage!!)/2).toFloat()
+                if(it.nextDayDelivery==null && it.nextDayDelivery==false) sameDayLinear.visibility = View.GONE
+                itemView.setOnClickListener {
+                    clickListener(singleProduct)
+                }
             }
+            
         }
     }
 }

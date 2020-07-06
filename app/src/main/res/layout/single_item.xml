@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="400dp"
+    android:background="@android:color/white"
+    android:layout_margin="2dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -15,8 +17,10 @@
         android:orientation="vertical"
         >
         <ImageView
+            android:id="@+id/productImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="fitCenter"
             />
     </LinearLayout>
 
@@ -37,6 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:text="iPhone 5"
+            android:ellipsize="end"
+            android:lines="2"
             android:textColor="@color/colorAccent"
             />
 
@@ -61,11 +67,12 @@
             <RatingBar
                 android:id="@+id/productRating"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:isIndicator="true"
-                style="?android:attr/ratingBarStyleIndicator"
-                android:numStars="5"
+                android:progressTint="#17E342"
+                style="?android:attr/ratingBarStyleSmall"                android:numStars="5"
                 android:stepSize="0.1"
+                android:layout_gravity="center_vertical"
                 />
         </LinearLayout>
 
@@ -77,7 +84,7 @@
             android:layout_marginStart="20dp"
             android:gravity="center"
             android:textColor="#000000"
-            android:textStyle="bold"
+            android:textSize="10sp"
             tools:text="209" />
 
 
@@ -121,8 +128,8 @@
                 android:id="@+id/sameDayTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold"
+                android:textColor="#17E342"
+                android:textSize="10sp"
                 android:text="@string/delivered_tomorrow_text" />
 
 
