@@ -5,4 +5,5 @@
     <string name="description_label">Description</string>
     <string name="consTitle">Cons</string>
     <string name="prosTitle">Pros</string>
+    <string name="general_error_msg">Something went wrong</string>
 </resources>

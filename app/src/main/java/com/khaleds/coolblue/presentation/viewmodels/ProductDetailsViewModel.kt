@@ -2,6 +2,7 @@ package com.khaleds.coolblue.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.khaleds.coolblue.R
 import com.khaleds.coolblue.domain.usecases.details.IProductDetailsUseCase
 import com.khaleds.coolblue.util.StateUi
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -16,7 +17,8 @@ class ProductDetailsViewModel @Inject constructor(private val iProductDetailsUse
 
     fun getDetails(id: Int){
         uiState.value = StateUi.Loading
-        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+        viewModelScope.launch(Dispatchers.IO +
+                exceptionHandler) {
             val result = iProductDetailsUseCase.getDetails(id)
             uiState.postValue(StateUi.Success(result))
         }
