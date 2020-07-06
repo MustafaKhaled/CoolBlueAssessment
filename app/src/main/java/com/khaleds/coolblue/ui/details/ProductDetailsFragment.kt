@@ -1,8 +1,4 @@
 package com.khaleds.coolblue.ui.details
-
-// simplifies adding media
-// simplifies adding media
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,17 +13,15 @@ import com.khaleds.coolblue.R
 import com.khaleds.coolblue.data.di.components.DaggerDataComponent
 import com.khaleds.coolblue.data.remote.entities.Product
 import com.khaleds.coolblue.data.remote.entities.ProductDetailsResponse
-import com.khaleds.coolblue.data.remote.entities.ProductsResponse
 import com.khaleds.coolblue.presentation.di.component.DaggerPresentationComponent
 import com.khaleds.coolblue.presentation.factory.ViewModelFactory
 import com.khaleds.coolblue.presentation.viewmodels.ProductDetailsViewModel
 import com.khaleds.coolblue.ui.details.di.component.DaggerProductDetailsComponent
 import com.khaleds.coolblue.util.MyApplication
 import com.khaleds.coolblue.util.StateUi
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.khaleds.coolblue.util.snack
 import kotlinx.android.synthetic.main.fragment_product_details.*
 import kotlinx.android.synthetic.main.fragment_product_details.progressBar
-import kotlinx.android.synthetic.main.single_item.view.*
 import java.lang.StringBuilder
 import javax.inject.Inject
 
@@ -40,8 +34,6 @@ class ProductDetailsFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindArguments(arguments)
-//        setHasOptionsMenu(true)
-//        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity?)!!.supportActionBar!!.title = product.productName
         DaggerProductDetailsComponent.builder()
             .presentationComponent(
@@ -63,9 +55,7 @@ class ProductDetailsFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_product_details,container,false)
-
-        return view
+        return inflater.inflate(R.layout.fragment_product_details,container,false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -85,7 +75,7 @@ class ProductDetailsFragment: Fragment() {
 
                 is StateUi.Error -> {
                     progressBar.visibility = View.GONE
-
+                    view.snack(getString(R.string.general_error_msg))
                 }
 
             }

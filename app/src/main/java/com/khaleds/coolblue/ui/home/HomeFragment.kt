@@ -25,6 +25,7 @@ import com.khaleds.coolblue.presentation.viewmodels.AllProductsViewModel
 import com.khaleds.coolblue.ui.home.di.component.DaggerAllProductsComponent
 import com.khaleds.coolblue.util.MyApplication
 import com.khaleds.coolblue.util.StateUi
+import com.khaleds.coolblue.util.snack
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.map
@@ -82,6 +83,7 @@ class HomeFragment : Fragment() {
 
                 is StateUi.Error -> {
                     progressBar.visibility = View.GONE
+                    view.snack(getString(R.string.general_error_msg))
 
                 }
 
@@ -90,12 +92,6 @@ class HomeFragment : Fragment() {
         })
 
     }
-
-//    override fun onResume() {
-//        super.onResume()
-//        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-//
-//    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -119,7 +115,6 @@ class HomeFragment : Fragment() {
                 return true
             }
         })
-        searchView.setOnClickListener { view -> }
     }
 
     private fun setupRecyclerView() {
