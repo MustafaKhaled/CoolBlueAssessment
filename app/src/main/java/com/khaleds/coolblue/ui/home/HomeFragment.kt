@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asFlow
+import androidx.lifecycle.map
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +24,8 @@ import com.khaleds.coolblue.ui.home.di.component.DaggerAllProductsComponent
 import com.khaleds.coolblue.util.MyApplication
 import com.khaleds.coolblue.util.StateUi
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class HomeFragment : Fragment() {
@@ -60,6 +64,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        allProductsViewModel.observeState()
         allProductsViewModel.observeState().observe(viewLifecycleOwner, Observer {
             when (it) {
                 is StateUi.Loading -> {
@@ -101,7 +106,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onQueryTextChange(query: String): Boolean {
-
+                adapter.filter.filter(query);
                 return true
             }
         })
