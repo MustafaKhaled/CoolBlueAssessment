@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.map
 import androidx.navigation.Navigation
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.khaleds.coolblue.MainActivity
@@ -50,6 +52,7 @@ class HomeFragment : Fragment() {
         allProductsViewModel =
             ViewModelProvider(this, viewModelFactory).get(AllProductsViewModel::class.java)
         allProductsViewModel.getAllProducts()
+
     }
 
     override fun onCreateView(
@@ -88,6 +91,12 @@ class HomeFragment : Fragment() {
 
     }
 
+//    override fun onResume() {
+//        super.onResume()
+//        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+//
+//    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         menu.clear()
@@ -119,6 +128,8 @@ class HomeFragment : Fragment() {
         productList.layoutManager = layoutManager
         productList.adapter = adapter
     }
+
+
 
     private fun movieItemClicked(product: Product) {
         val action = product.let { HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(it) }

@@ -40,8 +40,8 @@ class ProductDetailsFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindArguments(arguments)
-        setHasOptionsMenu(true)
-        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+//        setHasOptionsMenu(true)
+//        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity?)!!.supportActionBar!!.title = product.productName
         DaggerProductDetailsComponent.builder()
             .presentationComponent(
