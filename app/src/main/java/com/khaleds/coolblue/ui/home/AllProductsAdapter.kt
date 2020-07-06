@@ -69,15 +69,13 @@ class AllProductsAdapter(private val clickListener: (Product) -> Unit): Recycler
     }
     private val filterResult: Filter = object : Filter() {
         override fun performFiltering(constraint: CharSequence): FilterResults {
-            val filteredList: MutableList<Product> = ArrayList()
+            val filteredList = ArrayList<Product>()
             if (constraint.isEmpty()) {
-                mainList.clear()
-                mainList.addAll(originalList)
-                notifyDataSetChanged()
+                filteredList.addAll(getOriginalList())
             } else {
                 val filterPattern =
-                    constraint.toString().toLowerCase().trim { it <= ' ' }
-                for (item in mainList) {
+                    constraint.toString().toLowerCase().trim()
+                for (item in originalList) {
                     if (item.productName?.toLowerCase()?.contains(filterPattern)!!) {
                         filteredList.add(item)
                     }
@@ -92,9 +90,11 @@ class AllProductsAdapter(private val clickListener: (Product) -> Unit): Recycler
             constraint: CharSequence,
             results: FilterResults
         ) {
-            mainList.clear()
-            mainList.addAll(results.values as List<Product>)
-            notifyDataSetChanged()
-        }
+                mainList.clear()
+                mainList.addAll(results.values as Collection<Product>)
+                notifyDataSetChanged()
+            }
+
+
     }
 }
