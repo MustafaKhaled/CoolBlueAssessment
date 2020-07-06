@@ -6,4 +6,5 @@
     <string name="consTitle">Cons</string>
     <string name="prosTitle">Pros</string>
     <string name="general_error_msg">Something went wrong</string>
+    <string name="home_title">Home</string>
 </resources>
