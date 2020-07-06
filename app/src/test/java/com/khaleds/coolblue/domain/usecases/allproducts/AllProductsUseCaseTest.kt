@@ -10,32 +10,39 @@ import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.mockito.Mock
+import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 @ExperimentalCoroutinesApi
 class AllProductsUseCaseTest {
     @get:Rule
     val testCoroutineRule = TestCoroutineRule()
-    @Mock private lateinit var productsRepositoryImpl: ProductsRepositoryImpl
-    lateinit var allProductsUseCase: AllProductsUseCase
-    @Mock private lateinit var productDetailsResponse: ProductsResponse
+    private lateinit var useCase: AllProductsUseCase
+
+    @Mock
+    private lateinit var productsRepository: ProductsRepository
+    private val productsResponse = ProductsResponse(1,2,5, listOf(),10)
+
+
     @Before
     fun setup(){
         MockitoAnnotations.initMocks(this)
-        allProductsUseCase = AllProductsUseCase(productsRepositoryImpl)
+        useCase = AllProductsUseCase(productsRepository)
     }
 
     @Test
-    fun getAllProducts() {
+    fun `call getProducts() and verify repo called successfully`() {
         testCoroutineRule.runBlockingTest {
-            whenever(allProductsUseCase.getAllProducts()).thenReturn(productDetailsResponse)
-//            allProductsUseCase.getAllProducts()
-            verify(productsRepositoryImpl, times(1)).getAllProducts()
+            `when`(productsRepository.getAllProducts()).thenReturn(productsResponse)
+            val result = useCase.getAllProducts()
+            verify(productsRepository, times(1)).getAllProducts()
+            assertEquals(result,productsResponse)
         }
     }
 }

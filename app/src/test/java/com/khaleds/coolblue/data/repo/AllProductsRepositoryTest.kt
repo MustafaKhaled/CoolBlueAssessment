@@ -48,9 +48,9 @@ class AllProductsRepositoryTest {
     fun `execute getProducts() and check total result`(){
         runBlockingTest {
             `when`(mockServiceApi.getProducts()).thenReturn(productsResponse)
-            productsImpl.getAllProducts()
+            val result = productsImpl.getAllProducts()
             verify(mockServiceApi, atLeastOnce()).getProducts()
-            assertEquals(productsResponse.totalResults,10)
+            assertEquals(result.totalResults,10)
         }
     }
 
@@ -64,13 +64,4 @@ class AllProductsRepositoryTest {
         }
     }
 
-//    @Test
-//    fun `execute getProductDetails() and check result success`(){
-//        runBlockingTest {
-//            `when`(mockServiceApi.getProductDetails(1)).thenReturn(productDetailsResponse)
-//            val result = productsImpl.getProductDetails(1)
-//            verify(mockServiceApi, atLeastOnce()).getProductDetails(1)
-//            assertEquals(result,productDetailsResponse)
-//        }
-//    }
 }
