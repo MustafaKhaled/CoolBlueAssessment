@@ -121,7 +121,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun movieItemClicked(product: Product) {
-        val action = product.productId?.let { HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(productId = it) }!!
+        val action = product.let { HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(it) }
         Navigation.findNavController(productList).navigate(action)
     }
 

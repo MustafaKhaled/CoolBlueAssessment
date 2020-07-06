@@ -1,5 +1,9 @@
 package com.khaleds.coolblue.data.remote.entities
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Product(
     val USPs: List<String>?,
     val availabilityState: Int?,
@@ -13,4 +17,4 @@ data class Product(
     val promoIcon: PromoIcon?,
     val reviewInformation: ReviewInformation?,
     val salesPriceIncVat: Double?
-)
+) : Parcelable

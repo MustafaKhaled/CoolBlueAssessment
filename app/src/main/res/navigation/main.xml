@@ -27,6 +27,6 @@
         >
         <argument
             android:name="productId"
-            app:argType="integer" />
+            app:argType="com.khaleds.coolblue.data.remote.entities.Product" />
     </fragment>
 </navigation>

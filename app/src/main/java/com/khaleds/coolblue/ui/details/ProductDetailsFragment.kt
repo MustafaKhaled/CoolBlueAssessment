@@ -26,4 +26,10 @@ class ProductDetailsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
+
+    private fun bindArguments(arguments: Bundle?) {
+        if(arguments!=null){
+//            movie = MovieDetailsFragmentArgs.fromBundle(arguments).movie
+        }
+    }
 }
